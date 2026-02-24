@@ -1,20 +1,23 @@
 import os
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+# --- CHANGED: Use Ollama ---
+from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain.chains import RetrievalQA
+from langchain_classic.chains import RetrievalQA
 
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
 def get_rag_chain():
     db_path = os.path.join(os.path.dirname(__file__), '..', 'chroma_db')
     
+    # --- CHANGED: Use local embeddings function ---
     vector_db = Chroma(
         persist_directory=db_path, 
-        embedding_function=OpenAIEmbeddings()
+        embedding_function=OllamaEmbeddings(model="llama3.2")
     )
     
-    llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+    # --- CHANGED: Use local LLM ---
+    llm = ChatOllama(model="llama3.2", temperature=0)
     
     chain = RetrievalQA.from_chain_type(
         llm=llm,
