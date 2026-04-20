@@ -25,7 +25,7 @@ def build_vector_db():
     # --- CHANGED: Use local embeddings ---
     vector_db = Chroma.from_documents(
         documents=chunks, 
-        embedding=OllamaEmbeddings(model="llama3.2"),
+        embedding=OllamaEmbeddings(model="llama3.1:8b"),
         persist_directory=db_path
     )
     print(f"✅ Vector DB Created at {db_path}")

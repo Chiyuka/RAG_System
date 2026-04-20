@@ -1,5 +1,17 @@
+# Virtual Environment
 .venv/
+venv/
+
+# Vector Database
 chroma_db/
-__pycache__/
+
+# User Data / Documents
+data/
+
+# Environment Variables (Secrets)
 .env
-data/*.pdf
+
+# Python Cache & Mac Files
+__pycache__/
+*.pyc
+.DS_Store

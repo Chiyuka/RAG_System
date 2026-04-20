@@ -12,6 +12,6 @@ query = st.text_input("Ask a question about your documents:")
 
 if query:
     with st.spinner("Searching documents..."):
-        response = st.session_state.rag_chain.invoke({"query": query})
+        response = st.session_state.rag_chain.invoke({"input": query})
         st.markdown("### Answer")
-        st.write(response["result"])
+        st.write(response["answer"])
